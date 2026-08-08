@@ -4,7 +4,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
-from config import (NUMERIC_FEATURES,
+from src.config import (NUMERIC_FEATURES,
                     CATEGORICAL_FEATURES)
 
 
