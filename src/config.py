@@ -27,3 +27,8 @@ CAT_FEATURE_INDICES = list(
         len(NUMERIC_FEATURES) + len(CATEGORICAL_FEATURES)
     )
 )
+
+TARGET_MAPPING = {
+    "G": 0,
+    "B": 1
+}
