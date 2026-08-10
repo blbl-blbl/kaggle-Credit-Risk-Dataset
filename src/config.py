@@ -1,5 +1,7 @@
 # config.py
 
+import pandas as pd
+
 RANDOM_SEED = 42
 
 TARGET = 'QUALITY_OF_LOAN'
@@ -20,3 +22,13 @@ CATEGORICAL_FEATURES = [
 ]
 
 FEATURES = NUMERIC_FEATURES + CATEGORICAL_FEATURES
+
+CAT_FEATURE_INDICES = list(
+    range(
+        len(NUMERIC_FEATURES),
+        len(NUMERIC_FEATURES) + len(CATEGORICAL_FEATURES)
+    )
+)
+
+
+MODEL_METADATA = pd.read_json(r'..\models\metadata.json')
