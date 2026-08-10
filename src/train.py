@@ -56,7 +56,7 @@ def save_artifact(
         preprocessor,
         calibrated_model,
         threshold,
-        path='models/credit_risk_model.joblib'
+        path=PROJECT_ROOT / "models" / "credit_risk_model.joblib"
 ):
 
     artifact = {
