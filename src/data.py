@@ -25,9 +25,7 @@ def split_features(df):
     return X, y
 
 def train_val_cal_split(X, y):
-    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3,
+    X_train, X_cal, y_train, y_cal = train_test_split(X, y, test_size=0.9,
                                                         stratify=y, random_state=RANDOM_SEED)
-    X_val, X_cal, y_val, y_cal = train_test_split(X_temp, y_temp, test_size=0.33,
-                                                  stratify=y_temp, random_state=RANDOM_SEED)
 
-    return X_train, y_train, X_val, y_val, X_cal, y_cal
+    return X_train, y_train, X_cal, y_cal
