@@ -9,7 +9,6 @@ from sklearn.calibration import CalibratedClassifierCV
 from sklearn.frozen import FrozenEstimator
 
 from src.preprocessing import build_preprocessor
-from config import CAT_FEATURE_INDICES, RANDOM_SEED
 
 
 def load_metadata(path="../models/metadata.json"):
