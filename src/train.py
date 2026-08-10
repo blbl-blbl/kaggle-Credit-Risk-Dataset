@@ -65,7 +65,7 @@ def save_artifact(
         'threshold': threshold
     }
 
-    Path(path).mkdir(parents=True, exist_ok=True)
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
 
     joblib.dump(artifact, path)
 
