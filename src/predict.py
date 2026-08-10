@@ -1,11 +1,11 @@
 # predict.py
 
 import joblib
-import numpy as np
 from src.config import PROJECT_ROOT
+import pandas as pd
 
 
-def load_model(path=PROJECT_ROOT / "models" / "credit_risk_model.joblib"):
+def load_artifact(path=PROJECT_ROOT / "models" / "credit_risk_model.joblib"):
     return joblib.load(path)
 
 def predict(X, artifact):
@@ -18,4 +18,9 @@ def predict(X, artifact):
     probabilities = model.predict_proba(X_processed)[:, 1]
     predictions = (probabilities >= threshold).astype(int)
 
-    return probabilities, predictions
+    result = pd.DataFrame({
+        "probability": probabilities,
+        "prediction": predictions
+    })
+
+    return result
