@@ -2,9 +2,10 @@
 
 import joblib
 import numpy as np
+from src.config import PROJECT_ROOT
 
 
-def load_model(path="../models/credit_risk_model.joblib"):
+def load_model(path=PROJECT_ROOT / "models" / "credit_risk_model.joblib"):
     return joblib.load(path)
 
 def predict(X, artifact):

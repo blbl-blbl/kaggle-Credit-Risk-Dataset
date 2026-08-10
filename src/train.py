@@ -9,9 +9,10 @@ from sklearn.calibration import CalibratedClassifierCV
 from sklearn.frozen import FrozenEstimator
 
 from src.preprocessing import build_preprocessor
+from src.config import PROJECT_ROOT
 
 
-def load_metadata(path="../models/metadata.json"):
+def load_metadata(path=PROJECT_ROOT / "models" / "metadata.json"):
     with open(path, "r", encoding="utf-8") as file:
         return json.load(file)
 
