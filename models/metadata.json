@@ -1,0 +1,18 @@
+{
+  "model": "CatBoostClassifier",
+  "calibration": "isotonic",
+  "threshold": 0.0750,
+  "selection_metric": "average_precision",
+  "params": {
+    "iterations": 615,
+    "learning_rate": 0.11710314552338111,
+    "depth": 8,
+    "l2_leaf_reg": 3.3561071832622993,
+    "border_count": 247,
+    "verbose": false,
+    "random_strength": 1.493531219450427,
+    "bagging_temperature": 1.8833019360399517,
+    "random_seed": 42,
+    "cat_features": [4, 5, 6, 7, 8]
+  }
+}
