@@ -1,7 +1,10 @@
 # evaluate.py
 
+from pathlib import Path
 from src.predict import predict
+from src.config import PROJECT_ROOT
 
+import json
 from sklearn.metrics import (
     roc_auc_score,
     average_precision_score,
@@ -28,9 +31,12 @@ def evaluate_model(X, y, artifact):
         'log_loss': log_loss(y, probabilities),
         'brier_score': brier_score_loss(y, probabilities),
 
-        'precision': precision_score(y, predictions),
-        'recall': recall_score(y, predictions),
-        'f1': f1_score(y, predictions),
+        'precision': precision_score(y, predictions,
+                                     zero_division=0),
+        'recall': recall_score(y, predictions,
+                               zero_division=0),
+        'f1': f1_score(y, predictions,
+                       zero_division=0),
     }
 
     return metrics
@@ -43,4 +49,24 @@ def get_confusion_matrix(X, y, artifact):
 
     predictions = result['prediction']
 
-    return confusion_matrix(y, predictions)
+    return confusion_matrix(y, predictions).tolist()
+
+def build_report(
+        X, y,
+        artifact,
+        dataset_name
+):
+    return {
+        "dataset": dataset_name,
+        "metrics": evaluate_model(X, y, artifact),
+        "confusion_matrix": get_confusion_matrix(X, y, artifact)
+    }
+
+def save_report_json(
+        report,
+        path=PROJECT_ROOT / "reports" / "metrics.json"
+):
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+
+    with open(path, "w", encoding="utf-8") as file:
+        json.dump(report, file, indent=2)
