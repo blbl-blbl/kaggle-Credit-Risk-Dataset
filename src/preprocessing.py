@@ -8,7 +8,7 @@ from src.config import (NUMERIC_FEATURES,
                     CATEGORICAL_FEATURES)
 
 
-def build_catboost_preprocessor():
+def build_preprocessor():
     # Numeric features preprocessing
     numeric_pipeline_catboost = Pipeline(steps=[
         ('imputer', SimpleImputer(strategy='constant', fill_value=-1))
