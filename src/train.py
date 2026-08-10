@@ -37,7 +37,7 @@ def build_base_model(X, y, metadata):
 
 def calibrate_model(model, preprocessor,
                     X_cal, y_cal,
-                    method='isotonic'):
+                    method):
 
     X_cal_processed = preprocessor.transform(X_cal)
 
@@ -68,6 +68,8 @@ def save_artifact(
 
     joblib.dump(artifact, path)
 
+    return artifact
+
 
 def train(
         X_train, y_train,
@@ -91,8 +93,10 @@ def train(
 
     threshold = metadata['threshold']
 
-    save_artifact(
+    artifact = save_artifact(
         preprocessor,
         calibrated_model,
         threshold
     )
+
+    return artifact
