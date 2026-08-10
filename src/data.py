@@ -2,7 +2,7 @@
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from config import (FEATURES, TARGET,
+from src.config import (FEATURES, TARGET,
                     RANDOM_SEED, TARGET_MAPPING)
 
 
@@ -48,13 +48,13 @@ def prepare_test_target(df):
     valid_values = set(TARGET_MAPPING)
 
     invalid_mask = ~df[TARGET].isin(valid_values)
-    invalid_counts = invalid_mask.sum()
+    invalid_count = invalid_mask.sum()
 
-    if invalid_counts > 0:
+    if invalid_count > 0:
         print("Unknown target in the test")
         print(df.loc[invalid_mask, TARGET].value_counts(dropna=False))
         print(
-            f"Dropping {invalid_counts} rows"
+            f"Dropping {invalid_count} rows "
             f"with unknown target values"
         )
     df = df.loc[~invalid_mask].copy()
