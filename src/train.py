@@ -26,8 +26,8 @@ def build_base_model(X, y, metadata):
 
     model = CatBoostClassifier(
         **model_params,
-        cat_features=CAT_FEATURE_INDICES,
-        random_state=RANDOM_SEED,
+        cat_features=metadata["cat_features"],
+        random_seed=metadata['random_seed'],
         verbose=False
     )
 
