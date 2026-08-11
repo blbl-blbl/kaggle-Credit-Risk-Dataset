@@ -71,10 +71,36 @@ def split_features(df):
 
 
 def train_cal_split(X, y):
-    X_train, X_cal, y_train, y_cal = train_test_split(X, y, test_size=0.1,
-                                                        stratify=y, random_state=RANDOM_SEED)
+    X_train, X_temp, y_train, y_temp = train_test_split(
+        X,
+        y,
+        test_size=0.3,
+        stratify=y,
+        random_state=RANDOM_SEED
+    )
 
-    return X_train, y_train, X_cal, y_cal
+    X_val, X_cal, y_val, y_cal = train_test_split(
+        X_temp,
+        y_temp,
+        test_size=0.33,
+        stratify=y_temp,
+        random_state=RANDOM_SEED
+    )
+
+    X_train_final = pd.concat(
+        [X_train, X_val]
+    )
+
+    y_train_final = pd.concat(
+        [y_train, y_val]
+    )
+
+    return (
+        X_train_final,
+        y_train_final,
+        X_cal,
+        y_cal
+    )
 
 
 def prepare_train_data(path):
